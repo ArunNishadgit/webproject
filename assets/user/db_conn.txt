@@ -1,0 +1,74 @@
+<?php
+session_start();
+
+include "dbconn.php";
+
+if(isset($_POST["submit"])){
+   $username = mysqli_real_escape_string($conn, $_POST["user"]); 
+   $password = mysqli_real_escape_string($conn, $_POST["pass"]);
+
+   $sql = "SELECT * FROM user WHERE username = '$username' OR email = '$username'"; 
+   $result = mysqli_query($conn, $sql); 
+   $row = mysqli_fetch_assoc($result); 
+   
+   if ($row) {
+     if (password_verify($password, $row["password"])) {
+       $_SESSION['username'] = $row['username'];
+          header("location: ../index.php");
+           exit(); 
+           
+           
+        } else {
+            echo '<script>
+               alert("Invalid your password!!!");
+               window.location.href="login.php"; // Fix the spelling of "window" and add a semicolon
+               </script>';
+        }
+     } else {
+        echo '<script>
+               alert("Invalid username or password");
+               window.location.href="login.php"; // Fix the spelling of "window" and add a semicolon
+               </script>';
+   }
+} 
+?>
+
+
+
+
+<?php
+if(isset($_POST['submit'])){
+  include "condb.php";
+  $username = mysqli_real_escape_string($conn, $_POST['user']);
+  $email = mysqli_real_escape_string($conn, $_POST['email']);
+  $password = mysqli_real_escape_string($conn, $_POST['pass']);
+  $cpassword = mysqli_real_escape_string($conn, $_POST['cpass']);
+
+  $sql = "select * from user where username='$username'";
+  $result = mysqli_query($conn, $sql);
+  $count_user = mysqli_num_rows($result);
+
+  $sql = "select * from user where email='$email'";
+  $result = mysqli_query($conn, $sql);
+  $count_email = mysqli_num_rows($result);
+
+  if ($count_user == 0 && $count_email == 0) {
+    if ($password == $cpassword) {
+      $password = password_hash($password, PASSWORD_BCRYPT);
+      $sql = "insert into `user` (username, email, password) values ('$username','$email', '$password')";
+      $result = mysqli_query($conn, $sql);
+
+      if ($result) {
+        echo '<script>alert("Registration successful!"); window.location.href="login.php";</script>';
+      } else {
+        echo '<script>alert("Error in registration. Please try again."); window.location.href="register.php";</script>';
+      }
+    } else {
+      echo '<script>alert("Passwords do not match!"); window.location.href="register.php";</script>';
+    }
+  } else {
+    echo '<script>alert("User or email already exists!"); window.location.href="register.php";</script>';
+  }
+}
+?>
+ 

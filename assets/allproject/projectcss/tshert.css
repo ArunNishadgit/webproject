@@ -1,0 +1,355 @@
+@import 'https://unpkg.com/open-props' layer(design.system);
+
+@import 'https://unpkg.com/open-props/normalize.dark.min.css'
+  layer(base.normalize);
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200..900&family=Pacifico&display=swap');
+
+@layer base.utilities {
+  /* These utilities serve as a foundation for declaring the initial layout state */
+
+  /* block */
+  :where(.block) {
+    display: grid;
+  }
+
+  :where(.block-start-start) {
+    display: grid;
+    align-items: start;
+    justify-items: start;
+  }
+
+  :where(.block-start-center) {
+    display: grid;
+    align-items: start;
+    justify-items: center;
+  }
+
+  :where(.block-start-end) {
+    display: grid;
+    align-items: start;
+    justify-items: end;
+  }
+
+  :where(.block-center-start) {
+    display: grid;
+    align-items: center;
+    justify-items: start;
+  }
+
+  :where(.block-center-center) {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+  }
+
+  :where(.block-center-end) {
+    display: grid;
+    align-items: center;
+    justify-items: end;
+  }
+
+  :where(.block-end-start) {
+    display: grid;
+    align-items: end;
+    justify-items: start;
+  }
+
+  :where(.block-end-center) {
+    display: grid;
+    align-items: end;
+    justify-items: center;
+  }
+
+  :where(.block-end-end) {
+    display: grid;
+    align-items: end;
+    justify-items: end;
+  }
+
+  /* inline */
+  :where(.inline) {
+    display: grid;
+    grid-auto-flow: column;
+  }
+
+  :where(.inline-start-start) {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: start;
+    justify-items: start;
+  }
+
+  :where(.inline-start-center) {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: start;
+    justify-items: center;
+  }
+
+  :where(.inline-start-end) {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: start;
+    justify-items: end;
+  }
+
+  :where(.inline-center-start) {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-items: start;
+  }
+
+  :where(.inline-center-center) {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-items: center;
+  }
+
+  :where(.inline-center-end) {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-items: end;
+  }
+
+  :where(.inline-end-start) {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: end;
+    justify-items: start;
+  }
+
+  :where(.inline-end-center) {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: end;
+    justify-items: center;
+  }
+
+  :where(.inline-end-end) {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: end;
+    justify-items: end;
+  }
+
+  /* The only use of flex is here */
+  :where(.inline-wrap) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  /* This is the only class that manipulates the space between content */
+  :where(.space-between) {
+    justify-content: space-between;
+  }
+
+  /* Rarely used */
+  :where(.space-between-block) {
+    align-content: space-between;
+  }
+
+  /* If you want to manipulate the space between content as center, start, or end, 
+    just wrap them in a div block or inline so you shift all the space 
+    and let the parent of the wrapper handle the placement */
+
+  /* Gap */
+  :where(.gap-sm) {
+    --_gap: initial;
+    gap: var(--_gap, 1rem);
+  }
+
+  :where(.gap-md) {
+    --_gap: initial;
+    gap: var(--_gap, 1.5rem);
+  }
+
+  :where(.gap-lg) {
+    --_gap: initial;
+    gap: var(--_gap, 2rem);
+  }
+
+  /* Content */
+  :where(.content-sm) {
+    inline-size: min(100%, 370px);
+  }
+  :where(.content-md) {
+    inline-size: min(100%, 1270px);
+  }
+  :where(.content-lg) {
+    inline-size: min(100%, 1600px);
+  }
+}
+
+@layer base.normalize-overrides {
+  :root {
+    font-family: 'Inter', sans-serif;
+    --surface-1: black;
+    --surface-2: oklch(0.19 0 0);
+    --text-1: white;
+
+    --brand-1: oklch(0.65 0.24 16.93);
+    --brand-2: oklch(0.77 0.1 90);
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer base.components {
+  .Product {
+    padding: var(--size-3);
+    @media (width < 900px) {
+      grid-auto-flow: row;
+
+      .Visual {
+        inline-size: min(100%, 500px);
+      }
+    }
+  }
+
+  .Form {
+    & h3 {
+      max-inline-size: var(--size-content-1);
+      text-wrap: balance;
+    }
+    & fieldset {
+      padding: 0;
+      border: none;
+    }
+    & small {
+      max-inline-size: var(--size-content-3);
+    }
+
+    .Price {
+      font-weight: var(--font-weight-6);
+    }
+  }
+
+  .TagList {
+    --_gap: var(--size-1);
+
+    max-inline-size: var(--size-content-2);
+
+    & > legend {
+      margin-block-end: var(--size-2);
+    }
+
+    > .TagToggle {
+      box-shadow: var(--shadow-1);
+
+      > * {
+        grid-area: 1/1;
+      }
+
+      > label {
+        padding-inline: var(--size-3);
+        padding-block: var(--size-1);
+
+        border: var(--border-size-2) solid white;
+        border-radius: var(--radius-round);
+        cursor: pointer;
+        transition: 0.1s var(--ease-3);
+      }
+
+      > input {
+        appearance: none;
+        background: none;
+        border: none;
+        inline-size: 100%;
+        block-size: 100%;
+        border-radius: var(--radius-round);
+
+        &:checked ~ label {
+          background-color: white;
+          color: var(--surface-1);
+        }
+
+        &:not(:checked):is(:focus-within, :hover) ~ label {
+          background-color: white;
+          color: var(--surface-1);
+        }
+      }
+    }
+  }
+
+  .Visual {
+    margin: 0;
+    padding: 0;
+
+    background: conic-gradient(
+      from 90deg at 50% 0%,
+      hsl(0, 0%, 2%),
+      50%,
+      hsl(0, 0%, 8%),
+      hsl(0, 0%, 2%)
+    );
+    border-radius: var(--radius-3);
+    inline-size: 500px;
+
+    aspect-ratio: var(--ratio-square);
+
+    > picture {
+      transition: 0.1s ease;
+    }
+
+    > * {
+      grid-area: 1/1;
+    }
+
+    > picture {
+      animation: flip 2s step-end infinite;
+    }
+
+    > picture:last-child {
+      animation-delay: 1s;
+    }
+
+    &:hover > picture {
+      animation-play-state: paused;
+    }
+  }
+
+  @keyframes flip {
+    0% {
+      opacity: 0;
+      visibility: hidden;
+    }
+    50% {
+      opacity: 1;
+      visibility: visible;
+    }
+    100% {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  .Button {
+    font-size: var(--font-size-1);
+    font-weight: var(--font-weight-6);
+    padding: var(--size-2) var(--size-4);
+
+    white-space: nowrap;
+    cursor: not-allowed;
+
+    border-radius: var(--radius-5);
+    transition: background-color 0.2s ease;
+  }
+
+  .Form:valid {
+    .Button.Primary {
+      background-color: var(--brand-1);
+      color: var(--text-1);
+      cursor: pointer;
+
+      &:hover {
+        background-color: oklch(0.72 0.24 17.52);
+      }
+    }
+  }
+}

@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(238, 168, 168);
+}
+.contener {
+  margin-top: -100px;
+  min-height: 100%;
+}
+
+.about-section {
+  background: url("https://i.pinimg.com/originals/a3/55/ba/a355baf473b7a74e343381f603cde5b1.jpg")
+    no-repeat left;
+  background-size: 35%;
+  background-color: rgb(6, 6, 6);
+  overflow: hidden;
+  padding: 100px 0;
+}
+
+.inner-container {
+  width: 55%;
+  float: right;
+  background-color: rgb(5, 5, 5);
+  padding: 150px;
+}
+
+.inner-container h1 {
+  margin-bottom: 30px;
+  font-size: 30px;
+  font-weight: 900;
+  color: aliceblue;
+  font-family: "EB Garamond", serif;
+}
+
+.text {
+  font-size: 25px;
+  color: rgb(244, 244, 243);
+  line-height: 30px;
+  text-align: justify;
+  margin-bottom: 40px;
+  font-family: "EB Garamond", serif;
+}
+
+.skills {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 13px;
+  color: aliceblue;
+  font-size: 40px;
+}
+
+@media screen and (max-width: 1200px) {
+  .inner-container {
+    padding: 80px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .about-section {
+    background-size: 100%;
+    padding: 100px 40px;
+  }
+  .inner-container {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .about-section {
+    padding: 0;
+  }
+  .inner-container {
+    padding: 60px;
+  }
+}
+
+.bt {
+  margin-top: 50px;
+  margin-left: 210px;
+}
+.btn {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  border: 1px solid #ffffff;
+  border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  border-bottom-color: #b3b3b3;
+  border-radius: 2.5rem;
+  padding: 11px 19px;
+  font-size: 18.5px;
+
+  border-radius: 20px;
+}
+.btn:hover {
+  color: #0c0000;
+  background: rgba(122, 212, 122, 0.2) 34;
+}
